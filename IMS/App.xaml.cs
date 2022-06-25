@@ -15,7 +15,6 @@ namespace IMS
     {
         public App()
         {
-            Bold.Licensing.BoldLicenseProvider.RegisterLicense("+HFUsT9QYwalTxJn/a9pz/6ByNYot8eA6j2wPO0tPjo=");
         }
     }
 }
