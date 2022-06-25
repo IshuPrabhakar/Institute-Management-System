@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IMS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppTheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Light</Value>
+    </Setting>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Light</Value>
+    </Setting>
+    <Setting Name="AppAbout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IMS Version 1.0</Value>
+    </Setting>
+    <Setting Name="LicenceStatus" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Premium Valid till next year</Value>
+    </Setting>
+    <Setting Name="EnableOnline" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableEmailNoti" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableAllNoti" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableSocialURL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AdminProfileURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">file:///D:/ME/pexels-nikolaj-jepsen-4369796.jpg</Value>
+    </Setting>
+    <Setting Name="InstituteProfileURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

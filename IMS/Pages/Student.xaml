@@ -1,0 +1,346 @@
+﻿<Page
+    x:Class="IMS.Pages.Student"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:IMS.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Student"
+    d:DesignHeight="642"
+    d:DesignWidth="1060"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Converters:StudentsSerachParameters x:Key="SearchParameters" />
+    </Page.Resources>
+    <!--<Page.Resources>
+        <Storyboard x:Key="SideProfileAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="Student_SideProfile">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="330"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="SideProfile_Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="Student_SideProfile">
+                <EasingDoubleKeyFrame KeyTime="0" Value="330"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>-->
+
+    <!--<Page.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="DetailView">
+            <BeginStoryboard Storyboard="{StaticResource SideProfileAnimation}"/>
+        </EventTrigger>
+    </Page.Triggers>-->
+
+
+    <ScrollViewer>
+        <Grid Background="WhiteSmoke">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="23*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="180" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Grid.Column="1"
+                Padding="0,0,50,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="Century Gothic"
+                FontSize="15"
+                Foreground="Gray"
+                Text="Manage Student"
+                TextWrapping="Wrap" />
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#FF5D5D5D"
+                        Style="{StaticResource MaterialDesignTextBlock}"
+                        Text="Batch:" />
+
+                    <ComboBox
+                        Grid.Column="1"
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Bottom">
+                        <ComboBoxItem Content="Current" IsSelected="True" />
+                        <ComboBoxItem Content="Batch" />
+                    </ComboBox>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#FF5D5D5D"
+                        Style="{StaticResource MaterialDesignTextBlock}"
+                        Text="Search By:" />
+
+                    <ComboBox
+                        x:Name="SearchBy"
+                        Grid.Column="1"
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Bottom"
+                        materialDesign:HintAssist.Hint="Select"
+                        SelectionChanged="SearchBy_SelectionChanged">
+                        <ComboBoxItem Content="Recent" IsSelected="True" />
+                        <ComboBoxItem Content="Name" />
+                        <ComboBoxItem Content="Roll Number" />
+                        <ComboBoxItem Content="Subject" />
+                        <ComboBoxItem Content="Enrollment" />
+                        <ComboBoxItem Content="Waiting Student" />
+                        <ComboBoxItem Content="Fee Due" />
+                        <ComboBoxItem Content="Doc. submited?" />
+                        <ComboBoxItem Content="Category" />
+                        <ComboBoxItem Content="Mobile no." />
+                        <ComboBoxItem Content="Parent Name" />
+                        <ComboBoxItem Content="Location" />
+                    </ComboBox>
+                </Grid>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="203" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#FF5D5D5D"
+                        Style="{StaticResource MaterialDesignTextBlock}"
+                        Text="Additional Parameters:" />
+
+                    <ComboBox
+                        Grid.Column="1"
+                        Width="100"
+                        Height="26"
+                        Margin="0,22,1,22"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Bottom">
+                        <!--<ComboBoxItem>
+                            <Binding
+                                Converter="{StaticResource SearchParameters}"
+                                ElementName="SearchBy"
+                                Mode="TwoWay"
+                                Path="SelectedItem" />
+                        </ComboBoxItem>-->
+                    </ComboBox>
+                </Grid>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="199" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Width="64"
+                        Height="27"
+                        Margin="30,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#FF5D5D5D"
+                        Style="{StaticResource MaterialDesignTextBlock}"
+                        Text="Export As:" />
+
+                    <ComboBox
+                        Grid.Column="1"
+                        Width="100"
+                        Height="25"
+                        Margin="0,21"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Bottom">
+                        <ComboBoxItem Content="Select" IsSelected="True" />
+                        <ComboBoxItem Content="Execl" />
+                        <ComboBoxItem Content="Csv" />
+
+                    </ComboBox>
+                </Grid>
+
+                <Grid
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="71*" />
+                        <ColumnDefinition Width="244*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Width="46"
+                        Height="27"
+                        Margin="48,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#FF5D5D5D"
+                        Style="{StaticResource MaterialDesignTextBlock}"
+                        Text="Search:" />
+
+                    <TextBox
+                        Grid.Column="1"
+                        Height="47"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Search Student"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                </Grid>
+            </Grid>
+
+            <Border
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="1"
+                Style="{StaticResource Card}">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <DataGrid
+                    x:Name="StudentDataGrid"
+                    AlternatingRowBackground="#FFF3F3F3"
+                    IsTextSearchEnabled="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding Path='ID'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Roll No." />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Path='Name'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Name" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Path='Class'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Class" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Path='Subject'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Subject" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Path='Address'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Address" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Path='MobileNo'}"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Mobile No." />
+                        <DataGridCheckBoxColumn
+                            Width="110"
+                            CanUserReorder="True"
+                            CanUserResize="True"
+                            CanUserSort="True"
+                            Header="Is Doc. Submitted" />
+                        <DataGridTemplateColumn Header="View more">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        x:Name="DetailView"
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Click="DetailView_Click"
+                                        Style="{StaticResource DefaultButton}">
+                                        <materialDesign:PackIcon
+                                            Width="18"
+                                            Height="18"
+                                            Foreground="Black"
+                                            Kind="EyeOutline" />
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Print">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Background="{x:Null}"
+                                        BorderBrush="{x:Null}"
+                                        Click="Button_Click"
+                                        Style="{StaticResource DefaultButton}">
+                                        <materialDesign:PackIcon
+                                            Width="18"
+                                            Height="18"
+                                            Foreground="Black"
+                                            Kind="PrinterWireless" />
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

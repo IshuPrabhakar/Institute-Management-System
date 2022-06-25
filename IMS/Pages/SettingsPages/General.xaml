@@ -1,0 +1,577 @@
+﻿<Page
+    x:Class="IMS.Pages.SettingsPages.General"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Val="clr-namespace:IMS.Validations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages.SettingsPages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="General"
+    d:DesignHeight="1200"
+    d:DesignWidth="1060"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <Grid x:Name="MainGrid">
+            <Grid Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="130" />
+                    <RowDefinition Height="580" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Institute Profile"
+                    FontSize="17"
+                    FontWeight="SemiBold"
+                    Foreground="Gray" />
+
+                <Grid
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Width="156"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="Save"
+                        Background="WhiteSmoke"
+                        BorderBrush="{x:Null}"
+                        Click="SaveButton_click"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}">
+
+                        <materialDesign:PackIcon Foreground="Black" Kind="Check" />
+                    </Button>
+
+                    <Button
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        Background="WhiteSmoke"
+                        BorderBrush="{x:Null}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Close" />
+                    </Button>
+                </Grid>
+
+                <!--  Profile Button  -->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Button
+                        x:Name="ProfilePictureButton"
+                        Width="102"
+                        Height="102"
+                        Margin="0,0,0,0"
+                        Padding="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="{x:Null}"
+                        Click="ProfilePictureButton_Click"
+                        ToolTip="Edit Picture">
+
+                        <Border
+                            Width="102"
+                            Height="102"
+                            HorizontalAlignment="Center"
+                            Background="Black"
+                            CornerRadius="50">
+
+                            <Border
+                                Width="100"
+                                Height="100"
+                                Padding="0"
+                                Background="White"
+                                CornerRadius="60">
+                                <Image
+                                    x:Name="InstituteProfilePicture"
+                                    Grid.Column="1"
+                                    Width="80"
+                                    Height="80"
+                                    Source="{Binding GeneralConfig.InstituteProfileURL}"
+                                    Stretch="UniformToFill">
+                                    <Image.Clip>
+                                        <EllipseGeometry
+                                            Center="40,40"
+                                            RadiusX="39"
+                                            RadiusY="39" />
+                                    </Image.Clip>
+                                </Image>
+                            </Border>
+                        </Border>
+                    </Button>
+
+                </Grid>
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="55,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institution Name:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+                        <TextBox
+                            x:Name="InstituteName"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Institution Name"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.InstituteName"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institution Address:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="InstituteAddress"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Institution Address"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.InstituteAddress"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institution Phone:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="InstituteMobile"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Phone No."
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.InstitutePhone"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institution Email:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="InstituteEmail"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Email"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.InstitueEmail"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institute Code:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="InstituteCode"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Institute Code"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            ToolTip="Instititute Code or College code">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.InstituteCode"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Establishment year"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="EstablishmentYear"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Establish year"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.EstablishmentYear"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Brief Description"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="Description"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Description"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.Description"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Dice Code:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+                        <TextBox
+                            x:Name="DiceCode"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Dice Code"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            ToolTip="If Applicable ,In Case of Institue/College it is not required">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.DiceCode"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+                </Grid>
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Manage Social Account"
+                    FontSize="15"
+                    Foreground="Gray" />
+
+                <Grid
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="55,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            materialDesign:TextBlockAssist.AutoToolTip="True"
+                            Content="Manage Social Account"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            ToolTip="This is only for recieving notifications from social account, if you have enabled managing social account or website then it can do a lot more." />
+
+                        <ToggleButton
+                            x:Name="IsManageSocialAccountEnabled"
+                            Grid.Column="1"
+                            Width="100"
+                            Height="40"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="#FF3747E8">
+                            <ToggleButton.IsChecked>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.IsSocialURLEnabled"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True" />
+                            </ToggleButton.IsChecked>
+                        </ToggleButton>
+                        <!--  IsSocialURLEnabled  -->
+                    </Grid>
+
+                    <Grid
+                        x:Name="Furl"
+                        Grid.Row="1"
+                        Visibility="{Binding ElementName=IsManageSocialAccountEnabled, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institute's Facebook Url"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="FacebookURL"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Url"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.FacebookURL"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid
+                        x:Name="Wurl"
+                        Grid.Row="2"
+                        Visibility="{Binding ElementName=IsManageSocialAccountEnabled, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institute's Website Url"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="WebsiteURL"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Url"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.WebsiteURL"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid
+                        x:Name="WAurl"
+                        Grid.Row="3"
+                        Visibility="{Binding ElementName=IsManageSocialAccountEnabled, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Institute's WhatsApp"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <TextBox
+                            x:Name="WhatsAppURL"
+                            Grid.Column="1"
+                            Height="50"
+                            Margin="0,6,0,6"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Url"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="GeneralConfig.WhatsAppURL"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <Val:FieldRequried />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>

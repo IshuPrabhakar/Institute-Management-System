@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# This uses some third party nuget pakeages whole licensing and key sholud be kept private
+# Therefore those are ignored to upload to the remote server
+/bin/Debug/Syncfusion.Licensing.dll
+/App.xaml.cs

@@ -1,0 +1,501 @@
+﻿<Page
+    x:Class="IMS.Pages.SettingsPages.FeeSturcture"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converter="clr-namespace:IMS.Converters"
+    xmlns:UserControl="clr-namespace:IMS.UserControl"
+    xmlns:Val="clr-namespace:IMS.Validations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages.SettingsPages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="FeeSturcture"
+    d:DesignHeight="1000"
+    d:DesignWidth="1060"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Converter:EnableDisable x:Key="Disable" />
+    </Page.Resources>
+
+    <materialDesign:DialogHost x:Name="DialogBox">
+
+        <materialDesign:DialogHost.DialogContent>
+            <Border Width="400" Height="450">
+                <Grid Margin="20,20,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBox
+                        x:Name="NewFeeType"
+                        Grid.Column="1"
+                        Margin="0,6,0,6"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Fee Type"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="FeeListModel.FeeType"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <Val:FieldRequried />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <ComboBox
+                        x:Name="NewFeeDuration"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Bottom"
+                        materialDesign:HintAssist.Hint="Duration"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBoxItem Content="15 Days" />
+                        <ComboBoxItem Content="30 Days" />
+                        <ComboBoxItem Content="2 Months" />
+                        <ComboBoxItem Content="3 Months" />
+                        <ComboBoxItem Content="6 Months" />
+                        <ComboBoxItem Content="1 Year" />
+                        <ComboBoxItem Content="2 Year" />
+                        <ComboBoxItem Content="3 Year" />
+                        <ComboBoxItem Content="5 Year" />
+                        <ComboBoxItem Content="Forever" />
+                        <ComboBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="FeeListModel.Duration"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <Val:FieldRequried />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.Text>
+                    </ComboBox>
+
+                    <TextBox
+                        x:Name="NewFeeAmount"
+                        Grid.Row="2"
+                        Margin="0,6,0,6"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Amount"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="FeeListModel.FeeAmount"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <Val:NumberRequired />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <Grid Grid.Row="3" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Apply To All Batch's"
+                            FontSize="14"
+                            FontWeight="SemiBold" />
+
+                        <ToggleButton
+                            x:Name="NewApplyToAll"
+                            Grid.Column="1"
+                            Width="100"
+                            Height="40"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="#FF3747E8" />
+                    </Grid>
+
+                    <Grid Grid.Row="4" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Apply From Current Batch"
+                            FontSize="14"
+                            FontWeight="SemiBold" />
+
+                        <ToggleButton
+                            x:Name="NewApplyFromCurrent"
+                            Grid.Column="1"
+                            Width="100"
+                            Height="40"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="#FF3747E8" />
+                    </Grid>
+
+                    <StackPanel
+                        Grid.Row="5"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="AddButton"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Add"
+                            Click="AddButton_Click"
+                            Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.IsEnabled>
+                                <MultiBinding Converter="{StaticResource Disable}" Mode="OneWay">
+                                    <MultiBinding.Bindings>
+                                        <Binding ElementName="NewFeeType" Path="Text" />
+                                        <Binding ElementName="NewFeeDuration" Path="Text" />
+                                        <Binding ElementName="NewFeeAmount" Path="Text" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </Button.IsEnabled>
+                        </Button>
+                        <Button
+                            x:Name="UpdateButton"
+                            Click="UpdateButton_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Update"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Visibility="Collapsed" />
+                        <Button
+                            x:Name="CancelButton"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Cancel"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </materialDesign:DialogHost.DialogContent>
+
+        <Grid Background="WhiteSmoke">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Margin="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="top"
+                FontSize="16"
+                Foreground="Gray"
+                Text="Fee Structure" />
+
+            <TextBlock
+                Grid.Column="1"
+                Margin="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Foreground="Gray"
+                Text="Payment Accept Methods" />
+
+            <Border
+                Grid.Row="1"
+                Grid.RowSpan="1"
+                Grid.ColumnSpan="5"
+                Margin="25,0,25,0"
+                Background="White"
+                CornerRadius="13">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="550" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="1" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  LIST HEADER  -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="165" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Separator
+                                Grid.ColumnSpan="5"
+                                Margin="10,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Fee Type" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Amount" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Added by" />
+
+                            <TextBlock
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Quik Actions" />
+                        </Grid>
+
+                        <Label
+                            x:Name="HeaderOfList"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="You don't have any fee structure setuped Yet "
+                            FontSize="15"
+                            Visibility="{Binding ElementName=FeeList, Path=HasItems, Converter={StaticResource InverseBoolToVisConverter}}" />
+
+                        <ListBox
+                            x:Name="FeeList"
+                            Grid.Row="2"
+                            Padding="0"
+                            materialDesign:ListBoxItemAssist.ShowSelection="False"
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            ItemsSource="{Binding ListItem}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="110" />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding No}" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Text="{Binding FeeType, FallbackValue=Fee Type}"
+                                            TextWrapping="Wrap" />
+
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding FeeAmount, FallbackValue=Amount}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AddedBy, FallbackValue=Admin}"
+                                            FontSize="14" />
+                                        <StackPanel
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="5"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button
+                                                x:Name="EditItem"
+                                                Click="EditListItem"
+                                                Foreground="DodgerBlue"
+                                                Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Edit" />
+                                            </Button>
+                                            <Button
+                                                Click="RemoveItem"
+                                                Foreground="#FFC73D43"
+                                                Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border
+                            Grid.Row="3"
+                            Width="150"
+                            Margin="30"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            CornerRadius="13">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Direction="300"
+                                    Opacity="0.3"
+                                    ShadowDepth="1" />
+                            </Border.Effect>
+                            <Button
+                                x:Name="AddNewButton"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                materialDesign:ButtonAssist.CornerRadius="13"
+                                Background="White"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Content="Add new"
+                                Style="{StaticResource MaterialDesignFlatButton}" />
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Height="70" Margin="40,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Payment accept mode" />
+
+                            <ComboBox
+                                Grid.Column="1"
+                                Width="100"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                VerticalContentAlignment="Bottom">
+                                <ComboBoxItem Content="Offline Mode" IsSelected="True" />
+                                <ComboBoxItem Content="Online Mode" />
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="1"
+                            Height="70"
+                            Margin="40,0,15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Total Fee" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Total Fee"
+                                IsReadOnly="True"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                ToolTip="Will be calculated according to fee structure." />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="50"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                CornerRadius="13">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <Button
+                    x:Name="SaveButton"
+                    materialDesign:ButtonAssist.CornerRadius="13"
+                    Background="White"
+                    Click="SaveButton_Click"
+                    Content="Save"
+                    Foreground="#FF464646"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+            </Border>
+
+        </Grid>
+    </materialDesign:DialogHost>
+</Page>

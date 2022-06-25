@@ -1,0 +1,1353 @@
+﻿<Page
+    x:Class="IMS.Pages.SettingsPages.InstituteSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Commands="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:Converter="clr-namespace:IMS.Converters"
+    xmlns:Val="clr-namespace:IMS.Validations"
+    xmlns:ViewModel="clr-namespace:IMS.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages.SettingsPages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="InstituteSettings"
+    d:DesignHeight="2000"
+    d:DesignWidth="1060"
+    mc:Ignorable="d">
+
+    <!--  PAGE RESOURCES  -->
+    <Page.Resources>
+        <Converter:EnableDisable x:Key="Disable" />
+        <ViewModel:InstituteViewModel x:Key="ViewModel" />
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid Background="WhiteSmoke" DataContext="{StaticResource ViewModel}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85" />
+                <RowDefinition Height="600" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="400" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="300" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="300" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Institute Settings"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                Foreground="Gray" />
+
+            <Grid
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Border VerticalAlignment="Center" CornerRadius="13">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+                    <Button
+                        x:Name="Save"
+                        materialDesign:ButtonAssist.CornerRadius="13"
+                        Background="White"
+                        Content="Save"
+                        Foreground="#FF464646"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                </Border>
+            </Grid>
+
+            <Border
+                Grid.Row="1"
+                Grid.RowSpan="1"
+                Grid.Column="1"
+                Height="600"
+                Background="White"
+                CornerRadius="14">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Margin="50,30,50,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Roll No. Prefix:"
+                                FontSize="14"
+                                FontWeight="Medium" />
+                            <TextBox
+                                x:Name="InstituteNameBox"
+                                Grid.Column="1"
+                                Height="50"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Roll Number Prefix"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Config.RollNumberPrefix"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Enrollment No. Prefix:"
+                                FontSize="14"
+                                FontWeight="Medium" />
+
+                            <TextBox
+                                x:Name="InstituteAddressBox"
+                                Grid.Column="1"
+                                Height="50"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Institution Address"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Config.EnrollmentPrefix"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Recipt No. Prefix:"
+                                FontSize="14"
+                                FontWeight="Medium" />
+
+                            <TextBox
+                                x:Name="InstituteAddresssdBox"
+                                Grid.Column="1"
+                                Height="50"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Recipt Number Prefix"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Config.ReciptPrefix"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Admission No. Prefix:"
+                                FontSize="14"
+                                FontWeight="Medium" />
+
+                            <TextBox
+                                x:Name="InstituteAsddresssdBox"
+                                Grid.Column="1"
+                                Height="50"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Admission Number Prefix"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Config.AdmissionPrefix"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="180" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Recipt No. Prefix:"
+                                FontSize="14"
+                                FontWeight="Medium" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Height="50"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Recipt Number Prefix"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Config.ReciptPrefix"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid Margin="33,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Prefix Increment with year" />
+
+                            <ToggleButton
+                                Grid.Column="1"
+                                Width="100"
+                                Height="40"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Background="#FF3747E8"
+                                IsChecked="{Binding Path=Config.AutoIncrement, Mode=TwoWay}" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="33,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Whether Logo should be printed in Admission Form and Fee Recipt"
+                                TextWrapping="Wrap" />
+
+                            <ToggleButton
+                                Grid.Column="1"
+                                Width="100"
+                                Height="40"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding Path=Config.LogoOnReciptAndAdmission, Mode=TwoWay}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Grid
+                Grid.Row="1"
+                Grid.RowSpan="1"
+                Grid.Column="2"
+                Margin="25,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border
+                    Margin="0,0,0,10"
+                    Background="White"
+                    CornerRadius="14">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Margin="10"
+                            Content="For Example,"
+                            FontSize="14" />
+
+                        <!--  TODO INSERT AN IMAGE WHICH ILUSTRATE ROLL NUMBER PREFIXS  -->
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Margin="0,10,0,0"
+                    Background="White"
+                    CornerRadius="14">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+                </Border>
+            </Grid>
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Manage Sessions"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                Foreground="Gray" />
+
+            <!--  MANAGE STUDENT SESSIONS  -->
+            <materialDesign:DialogHost
+                x:Name="SessionDialogBox"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3">
+
+                <!--  Dialog Host  -->
+                <materialDesign:DialogHost.DialogContent>
+                    <Border Width="350" Height="200">
+                        <Grid Margin="20,20,20,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <TextBox
+                                x:Name="SessionTextBox"
+                                Grid.Column="1"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Session"
+                                materialDesign:ValidationAssist.HasError="True"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                               >
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="SessionTextBox"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <TextBox
+                                x:Name="AppliedTextBox"
+                                Grid.Row="1"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Applied To"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Text="{Binding AppliedToTextBox, Mode=TwoWay}" />
+
+                            <StackPanel
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="AddButton"
+                                    Content="Add"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource Disable}" Mode="OneWay">
+                                            <MultiBinding.Bindings>
+                                                <Binding ElementName="SessionTextBox" Path="Text" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                    
+                                    <Commands:Interaction.Triggers>
+                                        <Commands:EventTrigger EventName="Click">
+                                            <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                            <Commands:InvokeCommandAction Command="{Binding AddNewSession}" CommandParameter="{Binding ElementName=SessionTextBox, Path=Name}" />
+                                        </Commands:EventTrigger>
+                                    </Commands:Interaction.Triggers>
+                                </Button>
+
+                                <Button
+                                    x:Name="CancelButton"
+                                    Content="Cancel"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                    <Commands:Interaction.Triggers>
+                                        <Commands:EventTrigger EventName="Click">
+                                            <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                        </Commands:EventTrigger>
+                                    </Commands:Interaction.Triggers>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </materialDesign:DialogHost.DialogContent>
+
+                <Border
+                    Height="auto"
+                    Margin="35,20,35,20"
+                    Background="White"
+                    CornerRadius="14">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+
+                    <Grid Height="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="205" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--  LIST HEADER  -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="165" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Separator
+                                Grid.ColumnSpan="6"
+                                Margin="10,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Session" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Applied to" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Added by" />
+
+                            <TextBlock
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Date" />
+
+                            <TextBlock
+                                Grid.Column="5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Quik Actions" />
+                        </Grid>
+
+                        <Label
+                            x:Name="HeaderOfList"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="You don't have any session's Yet "
+                            FontSize="15"
+                            Visibility="{Binding ElementName=SessionList, Path=HasItems, Converter={StaticResource InverseBoolToVisConverter}}" />
+
+                        <ListBox
+                            x:Name="SessionList"
+                            Grid.Row="2"
+                            Padding="0"
+                            materialDesign:ListBoxItemAssist.ShowSelection="False"
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            ItemsSource="{Binding Sessions}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="250" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="280" />
+                                            <ColumnDefinition Width="350" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding No, FallbackValue=1}" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Text="{Binding Session, FallbackValue=2020-21}"
+                                            TextWrapping="Wrap" />
+
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AppliedTo, FallbackValue=AppliedTO}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AddedBy, FallbackValue=Admin}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding Date, FallbackValue=Date}"
+                                            FontSize="14" />
+
+                                        <StackPanel
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="5"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button Foreground="DodgerBlue" Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <Commands:Interaction.Triggers>
+                                                    <Commands:EventTrigger EventName="Click">
+                                                        <Commands:InvokeCommandAction Command="{Binding DataContext.EditItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" />
+                                                        <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+                                                    </Commands:EventTrigger>
+                                                </Commands:Interaction.Triggers>
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Edit" />
+                                            </Button>
+                                            <Button
+                                                Command="{Binding DataContext.RemoveItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="#FFC73D43"
+                                                Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border
+                            Grid.Row="3"
+                            Width="150"
+                            Margin="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            CornerRadius="13">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Direction="300"
+                                    Opacity="0.3"
+                                    ShadowDepth="1" />
+                            </Border.Effect>
+                            <Button
+                                x:Name="AddNewButton"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                materialDesign:ButtonAssist.CornerRadius="13"
+                                Background="White"
+                                Content="Add new"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                                <Commands:Interaction.Triggers>
+                                    <Commands:EventTrigger EventName="Click">
+                                        <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+                                    </Commands:EventTrigger>
+                                </Commands:Interaction.Triggers>
+                            </Button>
+                        </Border>
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Manage Documents"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                Foreground="Gray" />
+
+            <!--  MANAGE Educational DOCUMENTS  -->
+            <materialDesign:DialogHost
+                x:Name="DocumentsDialogBox"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3" >
+
+                <!--  Dialog Host  -->
+                <materialDesign:DialogHost.DialogContent>
+                    <Border Width="350" Height="200">
+                        <Grid Margin="20,20,20,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <TextBox
+                                x:Name="DocumentTitle"
+                                Grid.Column="1"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Title"
+                                materialDesign:ValidationAssist.HasError="True"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="EdTitle"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="4,6,0,6" 
+                                        HorizontalAlignment="Stretch">
+                                <Label VerticalAlignment="Center" Content="Is Required" />
+                                <ToggleButton 
+                                    x:Name="IsRequired"
+                                    Margin="120,6,0,6"
+                                    VerticalAlignment="Center"
+                                    IsChecked="{Binding IsRequired}"
+                                    Style="{StaticResource MaterialDesignSwitchToggleButton}" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="DocAddButton"
+                                    Content="Add"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource Disable}" Mode="OneWay">
+                                            <MultiBinding.Bindings>
+                                                <Binding ElementName="DocumentTitle" Path="Text" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                    <Commands:Interaction.Triggers>
+                                        <Commands:EventTrigger EventName="Click">
+                                            <Commands:InvokeCommandAction Command="{Binding AddNewSession}" CommandParameter="{Binding ElementName=DocumentTitle, Path=Name}" />
+                                            <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                        </Commands:EventTrigger>
+                                    </Commands:Interaction.Triggers>
+                                </Button>
+                                <Button
+                                    x:Name="DocCancelButton"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                    Content="Cancel"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </materialDesign:DialogHost.DialogContent>
+
+                <Border
+                    Height="auto"
+                    Margin="35,20,35,20"
+                    Background="White"
+                    CornerRadius="14">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+
+                    <Grid Height="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="110" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--  LIST HEADER  -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="165" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Separator
+                                Grid.ColumnSpan="6"
+                                Margin="10,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Documents" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Applied To" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Added by" />
+
+                            <TextBlock
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Date" />
+
+                            <TextBlock
+                                Grid.Column="5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Quik Actions" />
+                        </Grid>
+
+                        <Label
+                            x:Name="HeaderOfDocumentList"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="You don't have any Documents Setuped Yet "
+                            FontSize="15"
+                            Visibility="{Binding ElementName=DocumentList, Path=HasItems, Converter={StaticResource InverseBoolToVisConverter}}" />
+
+                        <ListBox
+                            x:Name="DocumentList"
+                            Grid.Row="2"
+                            Padding="0"
+                            materialDesign:ListBoxItemAssist.ShowSelection="False"
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            ItemsSource="{Binding EductionalDetailsList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="110" />
+                                            <ColumnDefinition Width="240" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="260" />
+                                            <ColumnDefinition Width="350" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding No, FallbackValue=1}" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Text="{Binding Title, FallbackValue=Document Title}"
+                                            TextWrapping="Wrap" />
+
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AppliedTo, FallbackValue=Applied To}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AddedBy, FallbackValue=Admin}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding Date, FallbackValue=Date}"
+                                            FontSize="14" />
+
+                                        <StackPanel
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="5"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button Foreground="DodgerBlue" Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Edit" />
+                                                <Commands:Interaction.Triggers>
+                                                    <Commands:EventTrigger EventName="Click">
+                                                        <Commands:InvokeCommandAction Command="{Binding DataContext.EditItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" />
+                                                        <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+                                                    </Commands:EventTrigger>
+                                                </Commands:Interaction.Triggers>
+                                            </Button>
+                                            <Button
+                                                Command="{Binding DataContext.RemoveItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                Foreground="#FFC73D43"
+                                                Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border
+                            Grid.Row="3"
+                            Width="150"
+                            Margin="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            CornerRadius="13">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Direction="300"
+                                    Opacity="0.3"
+                                    ShadowDepth="1" />
+                            </Border.Effect>
+                            <Button
+                                x:Name="AddNewDocButton"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                materialDesign:ButtonAssist.CornerRadius="13"
+                                Background="White"
+                                Click="AddNewButton_Click"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Content="Add new"
+                                Style="{StaticResource MaterialDesignFlatButton}" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+
+            <Label
+                Grid.Row="6"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Manage Required Educational Details"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                Foreground="Gray" />
+
+            <!--  MANAGE REQUIRED  Educational DOCUMENTS  -->
+            <materialDesign:DialogHost
+                x:Name="RequiredDocBox"
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                >
+
+                <!--  Dialog Host  -->
+                <materialDesign:DialogHost.DialogContent>
+                    <Border Width="350" Height="200">
+                        <Grid Margin="20,20,20,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <TextBox
+                                x:Name="EdDetailDocumentTitle"
+                                Grid.Column="1"
+                                Margin="0,6,0,6"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Title"
+                                materialDesign:ValidationAssist.HasError="True"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="DocTitle"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True">
+                                        <Binding.ValidationRules>
+                                            <Val:FieldRequried />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="4,6,0,6" 
+                                        HorizontalAlignment="Stretch">
+                                <Label VerticalAlignment="Center" Content="Is Required" />
+                                <ToggleButton 
+                                    Margin="120,6,0,6"
+                                    VerticalAlignment="Center"
+                                    IsChecked="{Binding IsRequired}"
+                                    Style="{StaticResource MaterialDesignSwitchToggleButton}" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="EdDetailAddButton"
+                                    Content="Add"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource Disable}" Mode="OneWay">
+                                            <MultiBinding.Bindings>
+                                                <Binding ElementName="EdDetailDocumentTitle" Path="Text" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                    <Commands:Interaction.Triggers>
+                                        <Commands:EventTrigger EventName="Click">
+                                            <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                            <Commands:InvokeCommandAction Command="{Binding AddNewSession}" CommandParameter="{Binding ElementName=EdDetailDocumentTitle, Path=Name}" />
+                                        </Commands:EventTrigger>
+                                    </Commands:Interaction.Triggers>
+                                </Button>
+                                <Button
+                                    x:Name="EdDetailCancelButton"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                    Content="Cancel"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </materialDesign:DialogHost.DialogContent>
+
+                <Border
+                    Height="auto"
+                    Margin="35,20,35,20"
+                    Background="White"
+                    CornerRadius="14">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+
+                    <Grid Height="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="110" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!--  LIST HEADER  -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="165" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Separator
+                                Grid.ColumnSpan="6"
+                                Margin="10,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Documents" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Applied to" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Added by" />
+
+                            <TextBlock
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Date" />
+
+                            <TextBlock
+                                Grid.Column="5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#FF5D5D5D"
+                                Style="{StaticResource MaterialDesignTextBlock}"
+                                Text="Quik Actions" />
+                        </Grid>
+
+                        <Label
+                            x:Name="HeaderOfEdDetailList"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="You don't have any EdDetail Setuped Yet "
+                            FontSize="15"
+                            Visibility="{Binding ElementName=EdDetailList, Path=HasItems, Converter={StaticResource InverseBoolToVisConverter}}" />
+
+                        <ListBox
+                            x:Name="EdDetailList"
+                            Grid.Row="2"
+                            Padding="0"
+                            materialDesign:ListBoxItemAssist.ShowSelection="False"
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            ItemsSource="{Binding RequiredDocuments}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="250" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="280" />
+                                            <ColumnDefinition Width="350" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding No, FallbackValue=1}" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Text="{Binding Title, FallbackValue=2020-21}"
+                                            TextWrapping="Wrap" />
+
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="All"
+                                            FontSize="14"
+                                            ToolTip="This is applied to all by default." />
+
+                                        <Label
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding AddedBy, FallbackValue=Admin}"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding Date, FallbackValue=Date}"
+                                            FontSize="14" />
+
+                                        <StackPanel
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="5"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button Foreground="DodgerBlue" Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Edit" />
+                                                <Commands:Interaction.Triggers>
+                                                    <Commands:EventTrigger EventName="Click">
+                                                        <Commands:InvokeCommandAction Command="{Binding DataContext.EditItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" />
+                                                        <Commands:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+                                                    </Commands:EventTrigger>
+                                                </Commands:Interaction.Triggers>
+                                            </Button>
+                                            <Button
+                                                Command="{Binding DataContext.RemoveItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                Foreground="#FFC73D43"
+                                                Style="{StaticResource MaterialDesignFlatAccentButton}">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border
+                            Grid.Row="3"
+                            Width="150"
+                            Margin="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            CornerRadius="13">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="15"
+                                    Direction="300"
+                                    Opacity="0.3"
+                                    ShadowDepth="1" />
+                            </Border.Effect>
+                            <Button
+                                x:Name="AddNewEdDetailButton"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                materialDesign:ButtonAssist.CornerRadius="13"
+                                Background="White"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Content="Add new"
+                                Style="{StaticResource MaterialDesignFlatButton}" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+
+            <Border
+                Grid.Row="50"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                CornerRadius="13">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <Button
+                    x:Name="SaveButton"
+                    materialDesign:ButtonAssist.CornerRadius="13"
+                    Background="White"
+                    Command="{Binding SaveConfiguration}"
+                    Content="Save"
+                    Foreground="#FF464646"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

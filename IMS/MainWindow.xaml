@@ -1,0 +1,925 @@
+﻿<Window
+    x:Class="IMS.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControl="clr-namespace:IMS.UserControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    x:Name="windowbackground"
+    Title="Dashboard"
+    Width="1280"
+    Height="720"
+    AllowsTransparency="True"
+    Background="Transparent"
+    Loaded="Window_Loaded"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    Style="{StaticResource DefaultWindow}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d" Unloaded="SaveSettingsWhenWindowIsClosing">
+    <!--#endregion-->
+    <Border
+        Padding="2"
+        Background="WhiteSmoke"
+        CornerRadius="13">
+
+        <Grid x:Name="Main">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="201*" />
+                <ColumnDefinition Width="934*" />
+                <ColumnDefinition Width="139" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Main Window Button  -->
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="2"
+                Height="37"
+                Margin="0,-1,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Panel.ZIndex="6"
+                Orientation="Horizontal">
+
+                <Button
+                    Width="45"
+                    HorizontalAlignment="Center"
+                    Click="Minimise_Button"
+                    Style="{StaticResource DefaultButton}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Minus" />
+                    </Grid>
+                </Button>
+                <Button
+                    Width="45"
+                    HorizontalAlignment="Center"
+                    Click="Maximise_Button"
+                    Style="{StaticResource DefaultButton}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            x:Name="MaximiseButton"
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Fullscreen" />
+                    </Grid>
+                </Button>
+                <Button
+                    Width="50"
+                    HorizontalAlignment="Center"
+                    materialDesign:ButtonAssist.CornerRadius="0,13,0,0"
+                    Click="Close_Button"
+                    Style="{StaticResource CloseButtonStyle}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Close" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+            <!--  #Endregion  -->
+
+            <!--  SIDE NAVIGATION BUTTONS  -->
+            <Border
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                BorderBrush="#FFDADADA"
+                CornerRadius="10,13,10,13"
+                Style="{StaticResource DefaultForground}">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Direction="300"
+                        Opacity="0.3"
+                        ShadowDepth="1" />
+                </Border.Effect>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <!--  Profile Button  -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            x:Name="InstituteTextBlock"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            FontSize="20"
+                            FontWeight="Regular"
+                            Text="Institution Name"
+                            TextWrapping="Wrap" />
+                        <Border
+                            Width="82"
+                            Height="82"
+                            Margin="0,15,0,0"
+                            Background="Black"
+                            CornerRadius="50">
+
+                            <Border
+                                Width="80"
+                                Height="80"
+                                Padding="0"
+                                Background="White"
+                                CornerRadius="50">
+                                <Image
+                                    x:Name="MainWindowProfilePictureEdit"
+                                    Grid.Column="1"
+                                    Height="80"
+                                    Loaded="MainWindowProfilePictureEdit_Loaded"
+                                    Source="Assets/Person.png"
+                                    Stretch="UniformToFill">
+                                    <Image.Clip>
+                                        <EllipseGeometry
+                                            Center="40,40"
+                                            RadiusX="38"
+                                            RadiusY="38" />
+                                    </Image.Clip>
+                                </Image>
+                            </Border>
+                        </Border>
+                        <Separator
+                            Grid.Row="2"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom" />
+                    </Grid>
+
+                    <!--  Side navigation Menu Button  -->
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Margin="0,15,0,0"
+                        materialDesign:ScrollBarAssist.ThumbCornerRadius="20"
+                        materialDesign:ScrollBarAssist.ThumbWidth="3"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                        <StackPanel
+                            Grid.Row="1"
+                            Width="215"
+                            Orientation="Vertical">
+                            <ListView x:Name="MainList" HorizontalAlignment="Left">
+                                <!--  DASHBOARD  -->
+                                <ListViewItem
+                                    x:Name="Dashboard"
+                                    HorizontalAlignment="Stretch"
+                                    Background="{x:Null}"
+                                    Cursor="Hand"
+                                    Selected="Dashboardd_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="ViewDashboard" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Dashboard" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+                                <!--  STUDENT  -->
+                                <ListViewItem x:Name="StudentMenuButton" Style="{StaticResource MenuButtonExpander}">
+                                    <Expander
+                                        x:Name="StudentExpander"
+                                        Width="180"
+                                        HorizontalAlignment="Left"
+                                        materialDesign:ExpanderAssist.HorizontalHeaderPadding="6,6,0,6"
+                                        Style="{StaticResource Expander}">
+                                        <Expander.Header>
+                                            <Grid Margin="0,0,-30,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="59" />
+                                                    <ColumnDefinition Width="103*" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Width="28"
+                                                    Height="28"
+                                                    Margin="0,0,4,0"
+                                                    HorizontalAlignment="Center"
+                                                    Foreground="{Binding ElementName=StudentExpander, Path=Foreground}"
+                                                    Kind="AccountGroup" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    Foreground="{Binding ElementName=StudentExpander, Path=Foreground}"
+                                                    Text="Students" />
+                                            </Grid>
+                                        </Expander.Header>
+                                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                                            <ListBox x:Name="StudentSubList">
+                                                <!--  MANAGE STUDENT  -->
+                                                <ListViewItem
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="StudentMenuButton_Selected"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="GearOutline" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Manage Student"
+                                                            TextTrimming="CharacterEllipsis" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+
+                                                <!--  NEW ADDMISSION  -->
+                                                <ListViewItem
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="AddNewStudent"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="PersonAdd" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Add Student"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+
+                                                <ListBoxItem Visibility="Collapsed" />
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Expander>
+                                </ListViewItem>
+
+                                <!--  TRANSACTION BUTTON  -->
+                                <ListViewItem
+                                    x:Name="Menubutton3"
+                                    Width="200"
+                                    Padding="0"
+                                    Selected="Menubutton3_Selected"
+                                    Style="{StaticResource MenuButtonExpander}">
+                                    <Expander
+                                        x:Name="TransactionExpander"
+                                        Width="180"
+                                        HorizontalAlignment="Left"
+                                        materialDesign:ExpanderAssist.HorizontalHeaderPadding="6,6,0,6"
+                                        Style="{StaticResource Expander}">
+                                        <Expander.Header>
+                                            <Grid Margin="0,0,-30,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="55" />
+                                                    <ColumnDefinition Width="auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Width="28"
+                                                    Height="28"
+                                                    HorizontalAlignment="Center"
+                                                    Foreground="{Binding ElementName=TransactionExpander, Path=Foreground}"
+                                                    Kind="ArrowLeftRight" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    Width="86"
+                                                    Height="24"
+                                                    Margin="3,2"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="17"
+                                                    Foreground="{Binding ElementName=TransactionExpander, Path=Foreground}"
+                                                    Text="Transaction"
+                                                    TextTrimming="CharacterEllipsis" />
+                                            </Grid>
+                                        </Expander.Header>
+                                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                                            <ListBox x:Name="TransactionSubList">
+                                                <ListViewItem
+                                                    x:Name="InstallmentButton"
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="ManageFee_FeePage"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Rupee" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Installment"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+                                                <ListBoxItem Visibility="Collapsed" />
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Expander>
+                                </ListViewItem>
+
+                                <!--  INSTITUTE  -->
+                                <ListViewItem
+                                    Width="200"
+                                    Padding="0"
+                                    Style="{StaticResource MenuButtonExpander}">
+                                    <Expander
+                                        x:Name="InstituteExpander"
+                                        Width="180"
+                                        HorizontalAlignment="Left"
+                                        materialDesign:ExpanderAssist.HorizontalHeaderPadding="6,6,0,6"
+                                        Style="{StaticResource Expander}">
+                                        <Expander.Header>
+                                            <Grid Margin="0,0,-30,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="61" />
+                                                    <ColumnDefinition Width="25*" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Width="28"
+                                                    Height="27"
+                                                    Margin="0,0,5,0"
+                                                    HorizontalAlignment="Center"
+                                                    Foreground="{Binding ElementName=InstituteExpander, Path=Foreground}"
+                                                    Kind="Bank" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    Width="65"
+                                                    Height="24"
+                                                    Margin="0,2,0,1"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    Foreground="{Binding ElementName=InstituteExpander, Path=Foreground}"
+                                                    Text="Institute" />
+                                            </Grid>
+                                        </Expander.Header>
+                                        <StackPanel
+                                            Margin="5,0,0,0"
+                                            HorizontalAlignment="Stretch"
+                                            Orientation="Vertical">
+                                            <ListBox x:Name="InstitueSubList">
+                                                <ListViewItem
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="InstituteSetting"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="InfoCircle" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="General"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+
+                                                <ListViewItem
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="Institute_Selected"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Bank" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Institute"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+
+                                                <ListViewItem
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="FeeStructure_Selected"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Rupee" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Fee Structure"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+                                                <ListBoxItem Visibility="Collapsed" />
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Expander>
+                                </ListViewItem>
+
+                                <!--  COURSES  -->
+                                <ListViewItem
+                                    x:Name="Menubutton4"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Menubutton4_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="63" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <materialDesign:PackIcon
+                                            Width="28"
+                                            Height="28"
+                                            Margin="20,0,19,0"
+                                            HorizontalAlignment="Center"
+                                            Foreground="{Binding ElementName=Menubutton4, Path=Foreground}"
+                                            Kind="Book" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Width="63"
+                                            Height="24"
+                                            Margin="0,2"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Courses" />
+                                    </Grid>
+                                </ListViewItem>
+
+                                <!--  STAFF  -->
+                                <ListViewItem
+                                    x:Name="Staff"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Staff_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="People" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Staff"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+                                <!--  EXam  -->
+                                <ListViewItem
+                                    x:Name="Exam"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Exam_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="Paper" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Exam"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+                                <!--  Attendence  -->
+                                <ListViewItem
+                                    x:Name="Attendence"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Attendence_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="Present" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Attendence"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+                                <!--  history  -->
+                                <ListViewItem x:Name="History" Style="{StaticResource MenuButtonExpander}">
+                                    <Expander
+                                        x:Name="HistoryExpander"
+                                        Width="180"
+                                        Margin="0"
+                                        HorizontalAlignment="Left"
+                                        materialDesign:ExpanderAssist.HorizontalHeaderPadding="6,6,0,6"
+                                        Style="{StaticResource Expander}">
+                                        <Expander.Header>
+                                            <Grid Margin="0,0,-5,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="63" />
+                                                    <ColumnDefinition Width="77*" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Width="28"
+                                                    Height="28"
+                                                    Margin="14,0,20,0"
+                                                    HorizontalAlignment="Center"
+                                                    Foreground="{Binding ElementName=HistoryExpander, Path=Foreground}"
+                                                    Kind="History" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    Width="67"
+                                                    Height="22"
+                                                    Margin="0,3"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontFamily="Century Gothic"
+                                                    FontSize="18"
+                                                    Foreground="{Binding ElementName=HistoryExpander, Path=Foreground}"
+                                                    Text="History" />
+                                            </Grid>
+                                        </Expander.Header>
+                                        <StackPanel
+                                            Margin="10,0,0,0"
+                                            HorizontalAlignment="Stretch"
+                                            Orientation="Vertical">
+                                            <ListBox x:Name="HistorySubList">
+                                                <!--  TRANSACTION  -->
+                                                <ListViewItem
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="transaction_history"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Money" />
+                                                        <TextBlock
+                                                            Width="95"
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Transactions"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+
+                                                </ListViewItem>
+
+                                                <!--  STUDENT  -->
+                                                <ListViewItem
+                                                    Height="37"
+                                                    Margin="0,6,0,6"
+                                                    VerticalAlignment="Stretch"
+                                                    Selected="student_selected"
+                                                    Style="{StaticResource MenuButtonList}">
+                                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="29"
+                                                            Height="29"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Person" />
+                                                        <TextBlock
+                                                            Margin="17,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"
+                                                            Text="Students"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </ListViewItem>
+                                                <ListBoxItem Visibility="Collapsed" />
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Expander>
+                                </ListViewItem>
+
+                                <!--  WEBSITE  -->
+                                <ListViewItem
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Web"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="Web" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Sites"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+
+                                <!--  Email And Notification  -->
+                                <ListViewItem
+                                    x:Name="EmailAndNotification"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="EmailAndNotification_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="PersonAdd" />
+                                        <TextBlock
+                                            Width="100"
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Email and notifications"
+                                            TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </ListViewItem>
+
+                                <!--  SETTINGS  -->
+                                <ListViewItem
+                                    x:Name="Menubutton8"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="Hand"
+                                    Selected="Menubutton8_Selected"
+                                    Style="{StaticResource MenuButtonList}">
+                                    <StackPanel Margin="17,0" Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="29"
+                                            Height="29"
+                                            VerticalAlignment="Center"
+                                            Kind="Gear" />
+                                        <TextBlock
+                                            Margin="17,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            Text="Settings"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </ListViewItem>
+                            </ListView>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+            <!--  End of side navigation  -->
+
+            <!--  Serachbar  -->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.Column="1"
+                    Height="35"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    CornerRadius="10"
+                    Style="{StaticResource Card}">
+                    <TextBox
+                        Padding="5,6,0,0"
+                        VerticalAlignment="Stretch"
+                        materialDesign:HintAssist.Hint="Search"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                        materialDesign:TextFieldAssist.LeadingIcon="Search"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#FF0080FF"
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0"
+                        CaretBrush="#FF2872DE"
+                        FontSize="16" />
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            Direction="300"
+                            Opacity="0.3"
+                            ShadowDepth="1" />
+                    </Border.Effect>
+                </Border>
+
+                <Grid
+                    Grid.Column="2"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Chip
+                        x:Name="UserProfile"
+                        Click="UserProfile_Click"
+                        Content="Admin"
+                        IconBackground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                        IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon Kind="User" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+
+                    <materialDesign:PopupBox
+                        x:Name="pop"
+                        HorizontalAlignment="Center"
+                        Visibility="Hidden">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Button Click="AccountAndAdvanced">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon
+                                        Width="18"
+                                        Height="18"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource SecondaryHueMidForegroundBrush}"
+                                        Kind="Cog" />
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="Setting" />
+                                </Grid>
+                            </Button>
+                            <Button Grid.Row="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon
+                                        Width="18"
+                                        Height="18"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource SecondaryHueMidForegroundBrush}"
+                                        Kind="Logout" />
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="Logout" />
+                                </Grid>
+                            </Button>
+                        </Grid>
+                    </materialDesign:PopupBox>
+
+                    <materialDesign:Badged
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Badge="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                                Style="{StaticResource MaterialDesignIconButton}">
+                                <materialDesign:PackIcon Foreground="Black" Kind="Bell" />
+                            </Button>
+
+                        </Grid>
+                    </materialDesign:Badged>
+
+                    <!--  Notifications  -->
+                    <materialDesign:PopupBox Grid.Column="1" PlacementMode="BottomAndAlignRightEdges">
+                        <Grid
+                            Width="230"
+                            Height="350"
+                            Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Notifications"
+                                FontSize="13" />
+                            <Label
+                                Grid.Row="5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="No Notifications"
+                                FontSize="15" />
+                        </Grid>
+                    </materialDesign:PopupBox>
+
+                    <ToggleButton
+                        Grid.Column="2"
+                        Width="35"
+                        Height="35"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Checked="DarkModeToggleButton_Checked"
+                        IsChecked="False"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Unchecked="DarkModeToggleButton_Unchecked">
+                        <materialDesign:PackIcon Foreground="Black" Kind="ThemeLightDark" />
+                    </ToggleButton>
+                </Grid>
+            </Grid>
+
+            <!--  Pages  -->
+            <Frame
+                x:Name="Pages"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Margin="5,25,0,0"
+                Background="Transparent"
+                NavigationUIVisibility="Hidden" />
+            <!--<ProgressBar
+                x:Name="ProgressBar"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                IsIndeterminate="True"
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Value="0" />-->
+            <!--  end  -->
+
+        </Grid>
+    </Border>
+</Window>

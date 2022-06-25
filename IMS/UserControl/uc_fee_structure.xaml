@@ -1,0 +1,80 @@
+﻿<UserControl
+    x:Class="IMS.UserControl.uc_fee_structure"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.UserControl"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="80"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid Background="WhiteSmoke">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            Foreground="#FF5D5D5D"
+            Style="{StaticResource MaterialDesignTextBlock}"
+            Text="1" />
+
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            Foreground="#FF5D5D5D"
+            Style="{StaticResource MaterialDesignTextBlock}"
+            Text="Fee Type" />
+
+        <TextBlock
+            Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            Foreground="#FF5D5D5D"
+            Style="{StaticResource MaterialDesignTextBlock}"
+            Text="Amount" />
+
+        <TextBlock
+            Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            Foreground="#FF5D5D5D"
+            Style="{StaticResource MaterialDesignTextBlock}"
+            Text="User" />
+
+        <Grid Grid.Column="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                Width="25"
+                Height="25"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="DodgerBlue"
+                Kind="EditOutline" />
+
+            <materialDesign:PackIcon
+                Grid.Column="1"
+                Width="25"
+                Height="25"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="PaleVioletRed"
+                Kind="Delete" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,185 @@
+﻿<Page
+    x:Class="IMS.Pages.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Settings"
+    d:DesignHeight="1042"
+    d:DesignWidth="1060"
+    Loaded="Page_Loaded"
+    Style="{StaticResource Defaultpage}"
+    mc:Ignorable="d">
+
+    <Grid Background="WhiteSmoke">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="631*" />
+                    <ColumnDefinition Width="0*" />
+                    <ColumnDefinition Width="226*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="330" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--  HEADER TEXT  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="66"
+                    Height="24"
+                    Margin="285,23,280,23"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Foreground="Gray"
+                    Text="Settings" />
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--  Font size  -->
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Font Size:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <ComboBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="90"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            IsEditable="True">
+                            <ComboBoxItem Content="Small" />
+                            <ComboBoxItem Content="Normal" IsSelected="True" />
+                            <ComboBoxItem Content="Large" />
+                            <ComboBoxItem Content="Extra Large" />
+                        </ComboBox>
+                    </Grid>
+
+                    <!--  Theme  -->
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="180" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Theme:"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <ComboBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="90"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            IsEditable="True">
+                            <ComboBoxItem Content="Small" />
+                            <ComboBoxItem Content="Normal" IsSelected="True" />
+                            <ComboBoxItem Content="Large" />
+                            <ComboBoxItem Content="Extra Large" />
+                        </ComboBox>
+                    </Grid>
+
+                </Grid>
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="10,20,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                </Grid>
+
+                <Button
+                    x:Name="SaveButton"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Height="42"
+                    Margin="247,0,247,20"
+                    VerticalAlignment="Bottom"
+                    Background="LightGray"
+                    IsEnabled="True"
+                    Style="{StaticResource DefaultButton}">
+                    <Grid
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon
+                            Grid.Column="1"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Kind="ContentSave" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Century Gothic"
+                            FontSize="15"
+                            Text="Save"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </Button>
+
+                <!--  long hand form for setting the message  -->
+                <!--
+                <materialDesign:Snackbar x:Name="SaveSnackbar" IsActive="False">
+                    <materialDesign:SnackbarMessage ActionContent="UNDO" Content="Your Prefrence has been Saved" />
+                </materialDesign:Snackbar>-->
+
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

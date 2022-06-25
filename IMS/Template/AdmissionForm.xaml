@@ -1,0 +1,604 @@
+﻿<Page
+    x:Class="IMS.Template.AdmissionForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Template"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AdmissionForm"
+    d:DesignHeight="1170"
+    d:DesignWidth="700"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+
+    <Grid Background="White">
+
+        <Grid x:Name="MainContent" Margin="0,30,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <RowDefinition Height="260" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Border
+                    Width="82"
+                    Height="82"
+                    Margin="0,0,0,0"
+                    VerticalAlignment="Top"
+                    Background="Black"
+                    CornerRadius="50">
+
+                    <Border
+                        Width="80"
+                        Height="80"
+                        Padding="0"
+                        Background="White"
+                        CornerRadius="50">
+                        <Image
+                            x:Name="PreviewWindowProfilePicture"
+                            Grid.Column="1"
+                            Height="80"
+                            Source="/Assets/Person.png"
+                            Stretch="UniformToFill">
+                            <Image.Clip>
+                                <EllipseGeometry
+                                    Center="40,40"
+                                    RadiusX="38"
+                                    RadiusY="38" />
+                            </Image.Clip>
+                        </Image>
+                    </Border>
+                </Border>
+            </Grid>
+
+            <Grid Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Name="InstitutionName"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="SemiBold"
+                    Text="Institution Name"
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    x:Name="InstitutionAddress"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="17"
+                    FontWeight="Regular"
+                    Text="Institution Address"
+                    TextWrapping="Wrap" />
+
+
+            </Grid>
+            <Separator
+                Grid.ColumnSpan="3"
+                Margin="25,0,25,0"
+                VerticalAlignment="Bottom" />
+
+            <!--  STUDENTS GENRAL INFORMATION  -->
+
+            <Grid
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Height="260"
+                Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="170" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    x:Name="StudentImage"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Width="140"
+                    Height="160"
+                    Margin="0,0,25,0"
+                    Stroke="#FF4D4D4D">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Assets/person.png" Stretch="Uniform" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <StackPanel Grid.RowSpan="2" Margin="25,10,0,0">
+                    <ListBox>
+                        <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Name:" />
+                                <TextBox
+                                    x:Name="NameBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student Name"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Father's Name:" />
+                                <TextBox
+                                    x:Name="FathersNameBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student's Fathers Name"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Mother's Name:" />
+                                <TextBox
+                                    x:Name="MothersNameBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student's Mother Name"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Gender:" />
+                                <TextBox
+                                    x:Name="GenderBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Male/Female"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Category:" />
+                                <TextBox
+                                    x:Name="CategoryBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="ST/SC/OBC/GEN"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Applied For:" />
+                                <TextBox
+                                    x:Name="ProgrammeNameBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Programme Name"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Date of Birth:" />
+                                <TextBox
+                                    x:Name="DOBBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="00/00/0000"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+
+                        <ListBoxItem Padding="10,0,0,0" IsHitTestVisible="False">
+                            <Grid Width="440" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Mobile No:" />
+                                <TextBox
+                                    x:Name="MobileBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="912xxxxx452"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+
+            </Grid>
+            <Separator
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Margin="25,0,25,0"
+                VerticalAlignment="Bottom" />
+
+            <!--  Students Personal Information  -->
+
+            <Grid
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.ColumnSpan="3">
+                    <ListBox>
+                        <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                            <Grid Width="640" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Address:" />
+                                <TextBox
+                                    x:Name="AddressBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student Address"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                            <Grid Width="640" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="Pincode:" />
+                                <TextBox
+                                    x:Name="PincodeBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student Pincode"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                            <Grid Width="640" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="State:" />
+                                <TextBox
+                                    x:Name="StateBox"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    IsReadOnly="True"
+                                    Text="Student state"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Margin="0,10,0,0"
+                    BorderBrush="Gray"
+                    BorderThickness="1">
+                    <StackPanel>
+                        <ListBox>
+                            <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                                <Grid Width="640" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Text="Examination:" />
+
+                                    <TextBox
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Board/University"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Subjects"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        Grid.Column="3"
+                                        HorizontalAlignment="Center"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Percentage %"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </ListBoxItem>
+
+                            <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                                <Grid Width="640" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Text="10TH:" />
+
+                                    <TextBox
+                                        x:Name="BoardorUniversity10TH"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Board/University"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="Subjects10TH"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Subjects"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="Pecentage10TH"
+                                        Grid.Column="3"
+                                        HorizontalAlignment="Center"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Percentage %"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </ListBoxItem>
+
+                            <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                                <Grid Width="640" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Text="12TH:" />
+
+                                    <TextBox
+                                        x:Name="BoardorUniversity12TH"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Board/University"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="Subjects12TH"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Subjects"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="Pecentage12TH"
+                                        Grid.Column="3"
+                                        HorizontalAlignment="Center"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Percentage %"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </ListBoxItem>
+
+                            <ListBoxItem Padding="10,2,0,0" IsHitTestVisible="False">
+                                <Grid Width="640" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Text="Graduation:" />
+
+                                    <TextBox
+                                        x:Name="BoardorUniversityGraduation"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Board/University"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="SubjectsGraduation"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Subjects"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="PecentageGraduation"
+                                        Grid.Column="3"
+                                        HorizontalAlignment="Center"
+                                        BorderThickness="0"
+                                        FontSize="14"
+                                        IsReadOnly="True"
+                                        Text="Percentage %"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

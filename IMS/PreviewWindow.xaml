@@ -1,0 +1,85 @@
+﻿<Window
+    x:Class="IMS.PreviewWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:BoldReports="clr-namespace:BoldReports.UI.Xaml;assembly=BoldReports.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    Title="PreviewWindow"
+    Width="700"
+    Height="1200"
+    Background="White"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterOwner"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="3"
+            Height="30"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Panel.ZIndex="6"
+            Orientation="Horizontal">
+
+            <Button
+                x:Name="PrintButton"
+                Width="45"
+                HorizontalAlignment="Center"
+                Background="White"
+                Style="{StaticResource DefaultButton}">
+                <Grid>
+                    <materialDesign:PackIcon
+                        Width="22"
+                        Height="22"
+                        Foreground="Black"
+                        Kind="Printer" />
+                </Grid>
+            </Button>
+
+            <Button
+                Width="45"
+                HorizontalAlignment="Center"
+                Background="White"
+                Click="Minimise_Button"
+                Style="{StaticResource DefaultButton}">
+                <Grid>
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="20"
+                        Foreground="Black"
+                        Kind="Minus" />
+                </Grid>
+            </Button>
+
+            <Button
+                Width="45"
+                HorizontalAlignment="Center"
+                Background="White"
+                Click="Close_Button"
+                Style="{StaticResource CloseButton}">
+                <Grid>
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="20"
+                        Foreground="Black"
+                        Kind="Close" />
+                </Grid>
+            </Button>
+
+        </StackPanel>
+
+        <Frame x:Name="PreviewFrame" Margin="0,30,0,0" />
+        <BoldReports:ReportViewer Name="Report" Margin="0,30,0,0" />
+
+    </Grid>
+</Window>

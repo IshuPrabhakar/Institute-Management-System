@@ -1,0 +1,98 @@
+﻿<Window
+    x:Class="IMS.AdvancedWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AdvancedWindow"
+    Width="1200"
+    Height="700"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    Style="{StaticResource DefaultWindow}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border
+        Padding="2"
+        Background="WhiteSmoke"
+        CornerRadius="13">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="133*" />
+                <ColumnDefinition Width="525*" />
+                <ColumnDefinition Width="139" />
+            </Grid.ColumnDefinitions>
+
+            <!--  MAIN_WINDOW BUTTON  -->
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="2"
+                Height="37"
+                Margin="0,-1,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Panel.ZIndex="6"
+                Orientation="Horizontal">
+
+                <Button
+                    Width="45"
+                    HorizontalAlignment="Center"
+                    Click="Minimise_Button"
+                    Style="{StaticResource DefaultButton}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Minus" />
+                    </Grid>
+                </Button>
+                <Button
+                    Width="45"
+                    HorizontalAlignment="Center"
+                    Click="Maximise_Button"
+                    Style="{StaticResource DefaultButton}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            x:Name="MaximiseButton"
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Fullscreen" />
+                    </Grid>
+                </Button>
+                <Button
+                    Width="50"
+                    HorizontalAlignment="Center"
+                    materialDesign:ButtonAssist.CornerRadius="0,13,0,0"
+                    Click="Close_Button"
+                    Style="{StaticResource CloseButtonStyle}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Width="20"
+                            Height="20"
+                            Foreground="Black"
+                            Kind="Close" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+            <Frame
+                x:Name="AdvFrame"
+                Grid.Row="1"
+                Grid.ColumnSpan="3" />
+        </Grid>
+    </Border>
+</Window>

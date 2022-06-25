@@ -1,0 +1,412 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:IMS"
+    xmlns:properties="clr-namespace:IMS.Properties">
+
+    <!--  TEXTBLOCK/LABEL STYLE  -->
+    <Style x:Key="SideMenuTextBlock" TargetType="TextBlock">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  TEXTBLOCK/LABEL STYLE  -->
+    <Style x:Key="VariableFontSize" TargetType="TextBlock">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  SIDE MENU  BUTTON OF MAINWINDOW  -->
+    <Style x:Key="MenuButton" TargetType="ToggleButton">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="Width" Value="195" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="13">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="whitesmoke" />
+                                    <Setter Property="Foreground" Value="Teal" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="0,0,0,0">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="whitesmoke" />
+                                    <Setter Property="Foreground" Value="Teal" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  SIDE MENU  BUTTON OF MAINWINDOW  -->
+    <Style x:Key="MenuButtonList" TargetType="ListBoxItem">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="4,6,4,6" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="Height" Value="37" />
+                <Setter Property="Width" Value="190" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                    <Setter Property="Foreground" Value="Teal" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="3,6,4,6" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="Height" Value="37" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Foreground" Value="{StaticResource MaterialDesignDarkForeground}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                    <Setter Property="Foreground" Value="Teal" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  SIDE MENU  BUTTON EXPANDER OF MAINWINDOW  -->
+    <Style
+        x:Key="Expander"
+        BasedOn="{StaticResource MaterialDesignExpander}"
+        TargetType="Expander">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="2,0,0,0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+                <Setter Property="Padding" Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="MenuButtonExpander" TargetType="ListBoxItem">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  Color  -->
+    <SolidColorBrush x:Key="DarkColor" Color="DimGray" />
+
+
+    <Style x:Key="DefaultForground" TargetType="Border">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="White" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Defaultpage" TargetType="Page">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="WhiteSmoke" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="#FF212121" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DefaultWindow" TargetType="Window">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="WhiteSmoke" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="#FF212121" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style
+        x:Key="DefaultCalender"
+        BasedOn="{StaticResource MaterialDesignCalendarPortrait}"
+        TargetType="Calendar">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="WhiteSmoke" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CloseButton" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="WhiteSmoke" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFFF2424" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="#FF212121" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFFF2424" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DefaultButton" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Light">
+                <Setter Property="Background" Value="WhiteSmoke" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFB0AEAE" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=AppTheme}" Value="Dark">
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Content" Value="button" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border
+                                Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFDDDEDE" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFB0AEAE" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

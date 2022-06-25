@@ -1,0 +1,1118 @@
+﻿<Page
+    x:Class="IMS.Pages.NewAdmission"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:IMS.Pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="NewAdmission"
+    d:DesignHeight="1842"
+    d:DesignWidth="1060"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="WhiteSmoke">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="65" />
+                <RowDefinition Height="180" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="250" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+
+            <!--  HEADER TEXT  -->
+            <TextBlock
+                Grid.Column="1"
+                Height="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                FontWeight="SemiBold"
+                Foreground="Gray"
+                Text="Add Student"
+                TextWrapping="Wrap" />
+
+            <!--  SIDE BATCH SELECT COMBOBOX  -->
+            <Grid
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Width="750"
+                HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="69*" />
+                    <ColumnDefinition Width="71*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="23*" />
+                        <ColumnDefinition Width="41*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Height="28"
+                        Margin="0,16"
+                        VerticalAlignment="Center"
+                        Content="Select Batch:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <ComboBox
+                        x:Name="StudentBatch"
+                        Grid.Column="1"
+                        Height="50"
+                        Margin="0,5"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Select Batch"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                </Grid>
+
+                <Grid Grid.Column="1" Margin="15,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="57*" MaxWidth="180" />
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Addmisson Type:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <ComboBox
+                        x:Name="AdmissionType"
+                        Grid.Column="1"
+                        Height="50"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Addmision Type"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBoxItem Content="Add New" />
+                    </ComboBox>
+                </Grid>
+            </Grid>
+
+            <!--  PROFILE BUTTON  -->
+            <Grid
+                Grid.Row="2"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Width="200"
+                HorizontalAlignment="Center">
+                <Button
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="MinHeight" Value="80" />
+                            <Setter Property="MinWidth" Value="80" />
+                            <Setter Property="Focusable" Value="False" />
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Ellipse Stroke="Black" StrokeThickness="2">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Assets/Person.png" Stretch="Uniform" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+
+            <!--  STUDENT NAME  -->
+            <Grid Grid.Row="5" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="180" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    x:Name="StudentName"
+                    VerticalAlignment="Center"
+                    Content="Student Name:"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="InstituteNameBox"
+                    Grid.Column="1"
+                    Height="50"
+                    Margin="0,6,0,6"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Institution Name"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+
+            <!--  FATHERS NAME  -->
+            <Grid Grid.Row="6" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="180" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    VerticalAlignment="Center"
+                    Content="Fathers Name:"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="StudentFathersName"
+                    Grid.Column="1"
+                    Height="50"
+                    Margin="0,6,0,6"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Institution Name"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+
+            <!--  MOTHERS NAME  -->
+            <Grid Grid.Row="7" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="180" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    VerticalAlignment="Center"
+                    Content="Mothers Name:"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="StudentMothersName"
+                    Grid.Column="1"
+                    Height="50"
+                    Margin="0,6,0,6"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Institution Name"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+
+            <!--  StudentAppliedFor  -->
+            <Grid Grid.Row="8" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="180" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    VerticalAlignment="Center"
+                    Content="Applied For:"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="StudentAppliedFor"
+                    Grid.Column="1"
+                    Height="50"
+                    Margin="0,6,0,6"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Applied For"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+
+            <!--  DOB, GENDER AND NATIONALITY  -->
+            <Grid
+                Grid.Row="9"
+                Grid.Column="1"
+                Margin="0,5,0,5"
+                HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="123*" />
+                    <ColumnDefinition Width="89*" />
+                    <ColumnDefinition Width="106*" />
+                    <ColumnDefinition Width="0" />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="107*" MaxWidth="180" />
+                        <ColumnDefinition Width="139*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Height="26"
+                        Margin="0,22"
+                        VerticalAlignment="Center"
+                        Content="Date of Birth:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <DatePicker
+                        x:Name="StudentDOB"
+                        Grid.Column="1"
+                        Height="50"
+                        Margin="0,10"
+                        HorizontalAlignment="Stretch"
+                        materialDesign:HintAssist.Hint="Date of Birth"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="180" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Gender:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <ComboBox
+                        x:Name="StudentGender"
+                        Grid.Column="1"
+                        Width="90"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="Male" IsSelected="True" />
+                        <ComboBoxItem Content="Female" />
+                    </ComboBox>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="180" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Nationality:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <TextBox
+                        x:Name="StudentNationality"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        MaxWidth="400"
+                        Margin="0,2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Nationality"
+                        AcceptsReturn="True"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap" />
+
+                </Grid>
+            </Grid>
+
+            <!--  CATEGORY AND MARTIAL STATUS  -->
+            <Grid
+                Grid.Row="10"
+                Grid.Column="1"
+                Margin="0,5,0,5"
+                HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Category:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+                    <ComboBox
+                        x:Name="StudentCategory"
+                        Grid.Column="1"
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="General" IsSelected="True" />
+                        <ComboBoxItem Content="ST" />
+                        <ComboBoxItem Content="SC" />
+                        <ComboBoxItem Content="OBC" />
+                    </ComboBox>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Marital Status:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <CheckBox
+                        x:Name="StudentMarrige"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" />
+                </Grid>
+            </Grid>
+
+            <!--  HEADER TEXT  -->
+            <Label
+                Grid.Row="11"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Educaional Details"
+                FontFamily="Century Gothic"
+                FontSize="17"
+                FontWeight="SemiBold"
+                Foreground="Gray" />
+
+            <Separator
+                Grid.Row="11"
+                Grid.Column="1"
+                Height="1"
+                Margin="100,0,100,12"
+                VerticalAlignment="Bottom" />
+
+            <!--  Students Personal information  -->
+            <Grid
+                Grid.Row="12"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Margin="6,0,192,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Height="25" IsHitTestVisible="False">
+                        <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="Examination:" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                FontSize="14"
+                                Text="Board/University"
+                                TextWrapping="Wrap" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                FontSize="14"
+                                Text="Subjects"
+                                TextWrapping="Wrap" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                FontSize="14"
+                                Text="Percentage %"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                        <Separator Margin="0,0,80,0" VerticalAlignment="Bottom" />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="10TH:"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBox
+                                x:Name="Student10THBoard"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Board/university"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="Student10THSub"
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Subjects"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="Student10THPercent"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Percentage %"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="2" IsHitTestVisible="False">
+                        <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="12TH:"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBox
+                                x:Name="Student12THBoard"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Board/university"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="Student12THSub"
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Subjects"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="Student12THPercent"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Percentage %"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="3" IsHitTestVisible="False">
+                        <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                VerticalAlignment="Center"
+                                Content="Graduation:"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBox
+                                x:Name="StudentGraduationBoard"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Board/university"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="StudentGraduationSub"
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Subjects"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+
+                            <TextBox
+                                x:Name="StudentGraduationPercent"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Percentage %"
+                                FontSize="14"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <!--  HEADER TEXT  -->
+            <Label
+                Grid.Row="14"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Postal Address"
+                FontFamily="Century Gothic"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Foreground="Gray" />
+
+            <Separator
+                Grid.Row="14"
+                Grid.Column="1"
+                Height="0"
+                Margin="70,0,70,6"
+                VerticalAlignment="Bottom" />
+
+            <!--  StudentAddress  -->
+            <Grid Grid.Row="15" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*" />
+                    <ColumnDefinition Width="167*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    VerticalAlignment="Center"
+                    Content="Student Address:"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="StudentAddress"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Student Address"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+
+            <!--  PINCODE AND DISTRICT  -->
+            <Grid
+                Grid.Row="16"
+                Grid.Column="1"
+                Margin="0,5,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*" />
+                    <ColumnDefinition Width="79*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="27*" MaxWidth="180" />
+                        <ColumnDefinition Width="37*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        VerticalAlignment="Center"
+                        Content="Pincode:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+
+                    <TextBox
+                        x:Name="StudentPincode"
+                        Grid.Column="1"
+                        Height="50"
+                        Margin="0,4,0,5"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Pincode"
+                        AcceptsReturn="True"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*" MaxWidth="180" />
+                        <ColumnDefinition Width="189*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Width="58"
+                        Height="28"
+                        Margin="48,12,21,12"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="District:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+                    <TextBox
+                        x:Name="StudentDistrict"
+                        Grid.Column="1"
+                        Height="50"
+                        Margin="0,1"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="District"
+                        AcceptsReturn="True"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+
+            <!--  HEADER TEXT  -->
+            <Label
+                Grid.Row="17"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Contact Detail"
+                FontFamily="Century Gothic"
+                FontSize="16"
+                Foreground="Gray" />
+
+            <!--  PHONE AND EMAIL  -->
+            <Grid Grid.Row="18" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="38*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="Phone"
+                            FontSize="14"
+                            FontWeight="Medium" />
+
+                        <materialDesign:PackIcon
+                            Margin="10,0,8,0"
+                            VerticalAlignment="Center"
+                            Kind="phone" />
+                    </Grid>
+                    <TextBox
+                        x:Name="StudentPhoneNo"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Phone"
+                        AcceptsReturn="True"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*" />
+                        <ColumnDefinition Width="118*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Width="46"
+                        Height="26"
+                        Margin="20,18,16,18"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Email:"
+                        FontSize="14"
+                        FontWeight="Medium" />
+                    <TextBox
+                        x:Name="StudentEmail"
+                        Grid.Column="1"
+                        Height="50"
+                        MaxWidth="400"
+                        Margin="0,6"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Email"
+                        AcceptsReturn="True"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+
+            <Grid
+                Grid.Row="18"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="0,70,0,1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*" />
+                    <ColumnDefinition Width="42*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.ColumnSpan="2"
+                    Height="28"
+                    Margin="0,20"
+                    VerticalAlignment="Center"
+                    Content="Parent Phone No. :"
+                    FontSize="14"
+                    FontWeight="Medium" />
+                <TextBox
+                    x:Name="StudentParentPhoneNo"
+                    Grid.Column="1"
+                    Height="50"
+                    Margin="0,9"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Phone"
+                    AcceptsReturn="True"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextWrapping="Wrap" />
+            </Grid>
+
+            <!--  HEADER TEXT  -->
+            <TextBlock
+                Grid.Row="20"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="Century Gothic"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Foreground="Gray"
+                Text="Documents"
+                TextWrapping="Wrap" />
+
+            <Separator
+                Grid.Row="20"
+                Grid.Column="1"
+                Height="0"
+                Margin="70,0,70,6"
+                VerticalAlignment="Bottom" />
+
+            <!--  DOCUMENT UPLOADS  -->
+            <ListBox
+                Grid.Row="21"
+                Grid.Column="1"
+                HorizontalContentAlignment="Center"
+                ItemsSource="{Binding RequiredDocs}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="480" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="{Binding RequiredDocs.No, FallbackValue=1}" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                FontSize="15"
+                                Text="{Binding RequiredDocs.Title, FallbackValue=Documents}"
+                                TextWrapping="Wrap" />
+
+                            <Button
+                                x:Name="DocUpload10Th"
+                                Grid.Column="2"
+                                Width="25"
+                                Height="25"
+                                HorizontalAlignment="Center"
+                                Click="DocUpload10Th_Click"
+                                Style="{StaticResource MaterialDesignIconButton}">
+                                <materialDesign:PackIcon Kind="Upload" />
+                            </Button>
+
+                            <ProgressBar
+                                x:Name="Progressbar"
+                                Grid.Column="2"
+                                Background="#FF3495CD"
+                                BorderBrush="#00B39DDB"
+                                Foreground="#FF2C76E2"
+                                Visibility="Hidden"
+                                Value="50" />
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <!--<ListBoxItem Padding="10,10,0,10">
+                    <Grid Width="480" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="1." />
+
+                        <TextBlock
+                            x:Name="BoardorUniversity10TH"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Text="10Th"
+                            TextWrapping="Wrap" />
+
+                        <Button
+                            x:Name="DocUpload10Th"
+                            Grid.Column="2"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Click="DocUpload10Th_Click"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="Upload" />
+                        </Button>
+
+                        <ProgressBar
+                            x:Name="Progressbar"
+                            Grid.Column="2"
+                            Background="#FF3495CD"
+                            BorderBrush="#00B39DDB"
+                            Foreground="#FF2C76E2"
+                            Visibility="Hidden"
+                            Value="50" />
+
+                    </Grid>
+                </ListBoxItem>
+
+                <ListBoxItem Padding="10,10,0,10">
+                    <Grid Width="480" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="2." />
+
+                        <TextBlock
+                            x:Name="BoardorUniversity12TH"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Text="12TH"
+                            TextWrapping="Wrap" />
+
+                        <Button
+                            x:Name="DocUpload12Th"
+                            Grid.Column="2"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="Upload" />
+                        </Button>
+
+                        <ProgressBar
+                            x:Name="Progressbar12"
+                            Grid.Column="2"
+                            Visibility="Hidden" />
+
+                    </Grid>
+                </ListBoxItem>
+
+                <ListBoxItem Padding="10,10,0,10">
+                    <Grid Width="480" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="3." />
+
+                        <TextBlock
+                            x:Name="BoardorUniversityGraduation"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Text="Migration"
+                            TextWrapping="Wrap" />
+
+                        <Button
+                            x:Name="DocUploadMigration"
+                            Grid.Column="2"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="Upload" />
+                        </Button>
+
+                        <ProgressBar
+                            x:Name="ProgressbarMigration"
+                            Grid.Column="2"
+                            Visibility="Hidden" />
+                    </Grid>
+                </ListBoxItem>
+
+                <ListBoxItem Padding="10,10,0,10">
+                    <Grid Width="480" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="4." />
+
+                        <TextBlock
+                            x:Name="BoardorUniversityGraduationf"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Text="Transfer Cirtificate"
+                            TextWrapping="Wrap" />
+
+                        <Button
+                            x:Name="DocUploadTC"
+                            Grid.Column="2"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="Upload" />
+                        </Button>
+
+                        <ProgressBar
+                            x:Name="ProgressbarTC"
+                            Grid.Column="2"
+                            Visibility="Hidden" />
+                    </Grid>
+                </ListBoxItem>-->
+            </ListBox>
+
+            <!--  LAST CONFIRMATION BUTTON  -->
+            <Grid
+                Grid.Row="22"
+                Grid.Column="1"
+                HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="AddButton"
+                    Margin="0,0,20,0"
+                    materialDesign:ButtonAssist.CornerRadius="8"
+                    Click="AddButton_Click"
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}">
+                    <Grid
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Kind="Check" />
+                        <TextBlock
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Century Gothic"
+                            FontSize="16"
+                            Text="Add Student"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </Button>
+                <Button
+                    x:Name="Discard"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    materialDesign:ButtonAssist.CornerRadius="8"
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignFlatAccentButton}">
+                    <Grid
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Kind="Close" />
+                        <TextBlock
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Century Gothic"
+                            FontSize="16"
+                            Text="Discard"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </Button>
+            </Grid>
+
+
+        </Grid>
+    </ScrollViewer>
+</Page>
